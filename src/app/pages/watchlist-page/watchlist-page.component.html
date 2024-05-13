@@ -1,0 +1,8 @@
+<button class="btn" style="margin-bottom: 40px;" (click)="editWatchlistHandler()">{{showGrid ? 'Edit watchlist' : 'Show Grid'}}</button>
+
+@if (showGrid) {
+<app-watchlist [rowData]="gridData$ | async" />
+}
+@else {
+<app-edit-watchlist [mySymbols]="(gridData$ | async) || []"></app-edit-watchlist>
+}

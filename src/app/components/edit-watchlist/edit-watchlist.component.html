@@ -1,0 +1,27 @@
+@if (!isLoading) {
+<input [(ngModel)]="searchText" placeholder="search..." type="search" style="margin-left: 10px;" class="search-box" />
+
+<ng-container *ngIf="symbolData | symbolSearch: searchText: mySymbols as searchedData">
+	<ul class="list" [hidden]="!searchText || searchedData.length === 0">
+		@for (searchSymbol of searchedData; track searchSymbol) {
+		<li>
+			<button class="add-symbol" (click)="addSymbol(searchSymbol)">+ Add Symbol</button>
+			<div class="symbol-name">{{searchSymbol.symbol}}</div>
+		</li>
+		}
+	</ul>
+</ng-container>
+
+<ul class="list">
+	@for (symbol of mySymbols; track symbol.id) {
+	<li>
+		<div class="del-symbol" (click)="deleteSymbol(symbol)">-</div>
+		<div class="symbol-name">{{symbol.symbol}}</div>
+	</li>
+	}
+</ul>
+} @else {
+<div>
+	Loading...
+</div>
+}
